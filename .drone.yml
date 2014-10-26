@@ -1,0 +1,17 @@
+image: python2.7
+
+script:
+  - sudo apt-get update && apt-get upgrade
+  - cat /etc/*-release
+  - uname -a
+
+notify:
+  email:
+    recipients:
+      - mooash@gmail.com
+  hipchat:
+    room: $$hipchatRoom
+    token: $$hipchatToken
+    on_started: true
+    on_success: true
+    on_failure: true
