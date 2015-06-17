@@ -29,7 +29,6 @@
 
 # Create our config
 - name: Create nrpe.cfg from template
-  sudo: true
   template: >
     src="nrpe.cfg.j2"
     dest="{{ nagios_nrpe_server_dir }}/nrpe.cfg"
@@ -38,7 +37,6 @@
 
 # Create nrpe_ansible.cfg
 - name: Create nrpe_ansible.cfg from template
-  sudo: true
   template: >
     src="nrpe_ansible.cfg.j2"
     dest="{{ nagios_nrpe_server_dir }}/nrpe_ansible.cfg"
@@ -47,7 +45,6 @@
 
 # Sync our plugins
 - name: Install global plugins
-  sudo: true
   copy: >
     src="{{ item }}"
     dest="{{ nagios_nrpe_server_plugins_dir }}/"
@@ -57,7 +54,6 @@
 
 # Install per-server plugins
 - name: Install per-server plugins
-  sudo: true
   copy: >
     src="{{ item }}"
     dest="{{ nagios_nrpe_server_plugins_dir }}/"
@@ -67,5 +63,4 @@
 
 # Ensure NRPE server is running and will start at boot
 - name: Ensure NRPE server is running
-  sudo: true
   service: name="{{ nagios_nrpe_server_service }}" state=started enabled=yes
